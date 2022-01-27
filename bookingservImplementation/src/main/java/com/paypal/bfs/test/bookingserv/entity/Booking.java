@@ -4,11 +4,13 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Booking extends com.paypal.bfs.test.bookingserv.api.model.Booking {
     @Id
+    @GeneratedValue
     @Column(name = "id", nullable = false)
     private Integer id;
 

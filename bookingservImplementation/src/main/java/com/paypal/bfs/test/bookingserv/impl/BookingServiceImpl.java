@@ -18,9 +18,10 @@ public class BookingServiceImpl implements BookingService {
         try {
             List<Booking> result = new ArrayList<>();
             Iterable<com.paypal.bfs.test.bookingserv.entity.Booking> iterator = repo.findAll();
-            while (iterator.iterator().hasNext()){
+            iterator.iterator().forEachRemaining(result::add);
+            /*while (iterator.iterator().hasNext()){
                 result.add(iterator.iterator().next());
-            }
+            }*/
 
             return result;
         }
@@ -31,13 +32,11 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> createTicket(Booking booking) throws Exception {
+    public Booking createTicket(com.paypal.bfs.test.bookingserv.entity.Booking booking) throws Exception {
         try {
-            com.paypal.bfs.test.bookingserv.entity.Booking booking1 = (com.paypal.bfs.test.bookingserv.entity.Booking) booking;
-            com.paypal.bfs.test.bookingserv.entity.Booking result = repo.save(booking1);
-            List<Booking> resultList = new ArrayList<>();
-            resultList.add(result);
-            return resultList;
+            //com.paypal.bfs.test.bookingserv.entity.Booking booking1 = (com.paypal.bfs.test.bookingserv.entity.Booking) booking;
+            Booking result = repo.save(booking);
+            return result;
         }
 
         catch (Exception exception){

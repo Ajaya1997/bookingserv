@@ -54,8 +54,8 @@
             <!--<dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                &lt;!&ndash;<version>1.4.197</version>&ndash;&gt;
-                <scope>runtime</scope>
+                <version>1.4.197</version>
+                <scope>compile</scope>
             </dependency>-->
             <dependency>
                 <groupId>org.projectlombok</groupId>

@@ -9,5 +9,5 @@ import java.util.List;
 public interface BookingService {
 
     public List<Booking> getBookingList() throws Exception;
-    public List<Booking> createTicket(Booking booking) throws Exception;
+    public Booking createTicket(com.paypal.bfs.test.bookingserv.entity.Booking booking) throws Exception;
 }

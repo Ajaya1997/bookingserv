@@ -3,6 +3,7 @@ package com.paypal.bfs.test.bookingserv.impl;
 import com.paypal.bfs.test.bookingserv.api.BookingResource;
 import com.paypal.bfs.test.bookingserv.api.model.Booking;
 import com.paypal.bfs.test.bookingserv.service.BookingService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,9 +19,10 @@ public class BookingResourceImpl implements BookingResource {
     @Override
     public ResponseEntity<Booking> create(Booking booking) {
         try {
-            com.paypal.bfs.test.bookingserv.entity.Booking booking1 = (com.paypal.bfs.test.bookingserv.entity.Booking) booking;
-            List<Booking> result = service.createTicket(booking1);
-            return ResponseEntity.ok().body(result.get(0));
+            com.paypal.bfs.test.bookingserv.entity.Booking childBooking = new com.paypal.bfs.test.bookingserv.entity.Booking();
+            BeanUtils.copyProperties(booking,childBooking);
+            Booking result = service.createTicket(childBooking);
+            return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
